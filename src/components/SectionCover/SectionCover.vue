@@ -1,6 +1,6 @@
 <template>
   <section class="transition-all ease-in bg-cover bg-center bg-no-repeat" :style="{ backgroundImage:`url(${props.bgImage})` }">
-    <div :class="{'bg-coverImage':props.hasCover}">
+    <div :class="{'bg-coverImage':props.hasCover, 'bg-coverImageDark':props.hasDarkCover}">
       <slot></slot>
     </div>
   </section>
@@ -12,7 +12,8 @@ const props = defineProps({
     type:String,
     required:false
   },
-  hasCover:Boolean
+  hasCover:Boolean,
+  hasDarkCover:Boolean
 });
 </script>
 

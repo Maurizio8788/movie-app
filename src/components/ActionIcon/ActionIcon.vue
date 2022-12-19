@@ -7,7 +7,7 @@
         :bgColor="props.iconConfiguration.bgColor"
         :path="props.iconConfiguration.path"
     />
-    <Tooltip />
+    <Tooltip :tooltip-text="props.tooltipText" v-if="props.useTooltip" />
   </a>
 </div>
 </template>
@@ -17,7 +17,9 @@ import SvgIcon from '../Icons/SvgIcon/SvgIcon.vue'
 import {defineProps} from'vue'
 import Tooltip from "@/components/Tooltip/Tooltip.vue";
 const props = defineProps({
-  iconConfiguration: Object
+  iconConfiguration: Object,
+  tooltipText:String,
+  useTooltip:Boolean
 })
 </script>
 

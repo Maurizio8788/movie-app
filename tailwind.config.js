@@ -14,7 +14,9 @@ module.exports = {
         buttonGradient: "linear-gradient(to right, rgba(30,213,169, 1) 0%, rgba(1,180,228, 1) 100%)",
         coverImage:"linear-gradient(to right, rgba(3,37,65,0.75) 0%, rgba(3,37,65, 0.75) 100%)",
         lightTabs:"linear-gradient(to right, rgba(192,254,207, 1) 0%, rgba(30,213,169, 1) 100%);",
-        playIcon:"url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-175-play-806cb05551791b8dedd7f8d38fd3bd806e2d397fcfeaa00a5cc9129f0819fd07.svg') "
+        playIcon:"url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-175-play-806cb05551791b8dedd7f8d38fd3bd806e2d397fcfeaa00a5cc9129f0819fd07.svg') ",
+        fadeGradient:"linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 100%)",
+        coverImageDark:"linear-gradient(to right, rgba(31.5, 10.5, 10.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 10.5, 10.5, 0.84) 30%, rgba(31.5, 10.5, 10.5, 0.84) 100%);"
       },
       borderRadius:{
         "4xl": "30px",

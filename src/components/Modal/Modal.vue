@@ -1,11 +1,22 @@
 <template>
   <TransitionGroup name="fade">
     <!--  Overlay -->
-    <div v-if="props.showModal" class="z-[10000] opacity-50 fixed bg-black top-0 left-0 flex items-center justify-center w-screen h-screen">
-    </div>
+    <div
+      v-if="props.showModal"
+      class="z-[10000] opacity-50 fixed bg-black top-0 left-0 flex items-center justify-center w-screen h-screen"
+    ></div>
     <!--  End Overlay -->
     <!--  Modal -->
-    <dialog v-if="props.showModal" class="modal z-[10001] top-1/2 left-1/2 fixed block min-w-[90px] min-h-[90px] w-[1200px] h-[700px]" :class="{'bg-black':props.background_black, 'text-white':props.color_white}">
+    <dialog
+      v-if="props.showModal"
+      class="modal z-[10001] top-1/2 left-1/2 fixed block min-w-[90px] min-h-[90px] h-[700px]"
+      :class="{
+        'bg-black': props.background_black,
+        'text-white': props.color_white,
+        'p-0':noPadding
+      }"
+      :style="{ 'width':`${props.width}px`}"
+    >
       <!--    Modal Title -->
       <slot name="header"></slot>
       <!--    End Modal Title -->
@@ -21,27 +32,29 @@
 </template>
 
 <script setup>
-import {defineProps, onMounted} from 'vue'
+import { defineProps, onMounted } from "vue";
 const props = defineProps({
   showModal: {
-    type:Boolean,
-    default: () => false
+    type: Boolean,
+    default: () => false,
   },
-  background_black:Boolean,
-  color_white:Boolean
-})
+  width:{
+    type:Number,
+    default:() => 1200
+  },
+  background_black: Boolean,
+  color_white: Boolean,
+  noPadding:Boolean
+});
 
-onMounted(
-    () => {
-      console.log(props.showModal);
-    }
-)
-
+onMounted(() => {
+  console.log(props.showModal);
+});
 </script>
 
 <style scoped>
 .modal {
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 </style>
 

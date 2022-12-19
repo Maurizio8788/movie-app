@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
-import {getMovieOnTheatres, getMovieVideos, getPopularMovie} from "@/api/movie";
+import {getMovieDetail, getMovieOnTheatres, getMovieVideos, getPopularMovie} from "@/api/movie";
+import {slicedArray} from "@/composable/array";
 
 export const moviesStore = defineStore("movie", {
     state(){
@@ -7,8 +8,19 @@ export const moviesStore = defineStore("movie", {
             popularMovie:[],
             moviesOnTheatres:[],
             initialCover:"",
-            movieTrailer:{}
+            movieTrailer:{},
+            movie:{},
+            crew:[],
+            cast:[],
+            crewDetailPage:[],
+            castDetailPage:[]
         }
+    },
+    getters:{
+      getCrew:(state) => state.crew,
+      getCast:(state) => state.cast,
+      getCrewDetail:(state) => state.crewDetailPage,
+      getCastDetail:(state) => state.castDetailPage,
     },
     actions:{
         async getPopularMovie() {
@@ -21,6 +33,12 @@ export const moviesStore = defineStore("movie", {
         async getMovieTrailer(idMovie) {
             const results = await getMovieVideos(idMovie);
             this.movieTrailer = results.find( x => x.type === 'Trailer' );
+        },
+        async getMovieDetail(idMovie) {
+            this.movie = await getMovieDetail(idMovie);
+            this.cast = this.movie?.credits?.cast;
+            this.crewDetailPage = slicedArray(this.movie?.credits?.crew, 6);
+            this.castDetailPage = slicedArray(this.cast, 10);
         }
     }
 })
