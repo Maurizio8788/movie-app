@@ -308,136 +308,26 @@
 </template>
 
 <script setup>
-// region main import
-
-import { Navigation, Pagination } from "swiper";
-import {Swiper, SwiperSlide, useSwiper} from 'swiper/vue';
-import {computed, inject, onBeforeMount, onMounted, ref} from "vue";
-import router from "@/router";
-
-// endregion
-
-// region imports components
-
 import SectionCover from "@/components/SectionCover/SectionCover.vue";
+import {inject} from "vue";
 import ProgressCircle from "@/components/Cards/MovieCard/ProgressCircle/ProgressCircle.vue";
 import ActionIcon from "@/components/ActionIcon/ActionIcon.vue";
+import {
+  bookMarkIconComponent, enlargeIconComponent,
+  hearthIconComponent, linkIconComponent,
+  listIconComponent, playIconComponent,
+  starIconComponent
+} from "@/components/Icons/icons";
 import Svg from "@/components/Icons/Svg/Svg.vue";
 import Path from "@/components/Icons/Path/Path.vue";
 import DetailsOverview from "@/components/DetailsOverview/DetailsOverview.vue";
 import CarouselCard from "@/components/CarouselCard/CarouselCard.vue";
-import MainComponent from "@/components/MainComponent/MainComponent.vue";
-import DetailSidebar from "@/components/Sidebars/DetailSidebar/DetailSidebar.vue";
-import Modal from "@/components/Modal/Modal.vue";
 
-// endregion
+const movieUrl = inject('baseImageUrl');
 
-// region Store import
-
-import { moviesStore } from "@/stores/movie";
-import { tvStore } from "@/stores/tv";
-
-// endregion
-
-// region imports general
-
-import {
-  arrowRoundedLeftIconComponent, arrowRoundedRightIconComponent,
-  bookMarkIconComponent,
-  enlargeIconComponent,
-  hearthIconComponent,
-  listIconComponent,
-  playIconComponent,
-  starIconComponent,
-} from "@/components/Icons/icons";
-
-import { timeConvert } from "@/composable/dateTime";
-
-// endregion
-
-// region Swiper css
-
-import 'swiper/swiper.min.css';
-import 'swiper/css/virtual';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-
-// endregion
-
-// region stores
-
-const movieStore = moviesStore();
-const tv = tvStore();
-const movieUrl = inject("baseImageUrl");
-
-// endregion
-
-// region Data
-
-const showModal = ref(false);
-const showModalImages = ref(false);
-let swiper = null;
-
-//endregion
-
-// region Computed
-
-const englishProperty = computed(
-  () =>
-    movieStore.movie.spoken_languages.find(
-      (el) => el.iso_639_1 === movieStore.movie.original_language
-    )?.english_name
-);
-const country = computed(() =>
-  movieStore.movie.releases.countries.find((el) => el.iso_3166_1 === "US")
-);
-const timeFilm = computed(() => timeConvert(movieStore.movie.runtime));
-const mainTrailer = computed(() =>
-  movieStore.movie?.videos?.results?.find((x) => x.type === "Trailer")
-);
-
-// endregion
-
-// region Hooks
-
-onBeforeMount(
-    () => {
-      swiper = useSwiper();
-    }
-)
-
-
-onMounted(() => {
-  const routeParams = router.currentRoute.value.params;
-  detail(routeParams.media, routeParams.id);
-});
-
-// endregion
-
-// region Methods
-
-const detail = (type, idMovie) => {
-  switch (type) {
-    case "tv":
-      console.log("tv");
-      break;
-    case "movie":
-      movieStore.getMovieDetail(idMovie);
-      break;
-  }
-};
-
-//endregion
 
 </script>
 
 <style scoped>
-.swiper {
-  @apply w-[517px] h-[700px] m-0 p-0 overflow-hidden block;
-}
 
-.swiper-slide {
-  @apply !w-[517px] !h-[700px];
-}
 </style>
