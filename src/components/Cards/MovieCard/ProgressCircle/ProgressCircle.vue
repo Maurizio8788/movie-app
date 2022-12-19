@@ -27,7 +27,7 @@
         />
       </svg>
       <div class="font-semibold absolute text-white">
-        {{props.progress ? props.progress : 'NR' }}
+        {{props.progress ? props.progress * 10 : 'NR' }}
         <span v-if="props.progress" class="absolute text-[5px]">%</span>
       </div>
     </div>
@@ -43,19 +43,19 @@ const props= defineProps({
   progress:Number,
   width:{
     type:Number,
-    required:true
+    default:() => 38
   },
   height:{
     type:Number,
-    required:true
+    default:() => 38
   },
   svgWidth:{
     type:Number,
-    required:true
+    default:() => 34
   },
   svgHeight:{
     type:Number,
-    required:true
+    default:() => 34
   },
 })
 

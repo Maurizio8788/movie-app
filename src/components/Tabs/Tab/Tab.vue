@@ -1,26 +1,25 @@
 <template>
-    <div class="relative" v-if="props.title === selectedTitle?.title">
-      <slot></slot>
-    </div>
+  <div class="relative" v-if="props.title === selectedTitle?.title">
+    <slot></slot>
+  </div>
 </template>
 
 <script setup>
-import {defineProps, inject } from 'vue'
+import { defineProps, inject } from "vue";
 
-const selectedTitle= inject('selectedTitle');
+const selectedTitle = inject("selectedTitle");
 
 const props = defineProps({
-  title:{
-    type:String,
-    required:true
+  title: {
+    type: String,
+    required: true,
   },
-  type:{
-    type:String,
-    required:true
+  type: {
+    type: String,
+    required: true,
   },
-  isActive:Boolean
+  isActive: Boolean,
 });
-
 </script>
 
 <style>

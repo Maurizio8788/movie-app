@@ -70,3 +70,4 @@ const clickTabs = (idx) => {
 }
 provide("selectedTitle", selectedTitle);
 </script>
+
